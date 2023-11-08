@@ -109,6 +109,7 @@ begin
     1;
   calMonthly.ShowHint := True;
   calMonthly.OnGetDateInfo := @calMonthlyGetDateInfo;
+  calMonthly.UpdateCalendar;
 
   // appearance
   P := cgrCalendarOptions.ClientToParent(Point(0, 0));

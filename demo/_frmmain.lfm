@@ -377,7 +377,9 @@ object frmMain: TfrmMain
       BorderSpacing.Left = 8
       BorderSpacing.Right = 8
       Caption = 'B'
+      Checked = True
       OnChange = date1Change
+      State = cbChecked
       TabOrder = 8
     end
     object btnFontDate2: TColorButton
@@ -395,7 +397,7 @@ object frmMain: TfrmMain
       BorderSpacing.Right = 8
       BorderWidth = 2
       ButtonColorSize = 16
-      ButtonColor = clWindowText
+      ButtonColor = clGreen
       Caption = 'Font'
       OnColorChanged = date1Change
     end
@@ -414,7 +416,7 @@ object frmMain: TfrmMain
       BorderSpacing.Right = 8
       BorderWidth = 2
       ButtonColorSize = 16
-      ButtonColor = clWindow
+      ButtonColor = clMoneyGreen
       Caption = 'Background'
       OnColorChanged = date1Change
     end
@@ -504,7 +506,9 @@ object frmMain: TfrmMain
       BorderSpacing.Left = 8
       BorderSpacing.Right = 8
       Caption = 'I'
+      Checked = True
       OnChange = date1Change
+      State = cbChecked
       TabOrder = 12
     end
     object chkBoldDate3: TCheckBox
@@ -537,7 +541,7 @@ object frmMain: TfrmMain
       BorderSpacing.Right = 8
       BorderWidth = 2
       ButtonColorSize = 16
-      ButtonColor = clWindowText
+      ButtonColor = clOlive
       Caption = 'Font'
       OnColorChanged = date1Change
     end
@@ -556,7 +560,7 @@ object frmMain: TfrmMain
       BorderSpacing.Right = 8
       BorderWidth = 2
       ButtonColorSize = 16
-      ButtonColor = clWindow
+      ButtonColor = clCream
       Caption = 'Background'
       OnColorChanged = date1Change
     end
@@ -581,7 +585,7 @@ object frmMain: TfrmMain
       TimeFormat = tf24
       TimeDisplay = tdHMS
       DateMode = dmComboBox
-      Date = 45239
+      Date = 45241
       Time = 0.0305180671275593
       UseDefaultSeparators = True
       HideDateTimeParts = []
@@ -631,7 +635,9 @@ object frmMain: TfrmMain
       BorderSpacing.Left = 8
       BorderSpacing.Right = 8
       Caption = 'U'
+      Checked = True
       OnChange = date1Change
+      State = cbChecked
       TabOrder = 16
     end
     object chkItalicDate4: TCheckBox
@@ -679,7 +685,7 @@ object frmMain: TfrmMain
       BorderSpacing.Right = 8
       BorderWidth = 2
       ButtonColorSize = 16
-      ButtonColor = clWindowText
+      ButtonColor = clNavy
       Caption = 'Font'
       OnColorChanged = date1Change
     end
@@ -698,7 +704,7 @@ object frmMain: TfrmMain
       BorderSpacing.Right = 8
       BorderWidth = 2
       ButtonColorSize = 16
-      ButtonColor = clWindow
+      ButtonColor = clSkyBlue
       Caption = 'Background'
       OnColorChanged = date1Change
     end
@@ -723,7 +729,7 @@ object frmMain: TfrmMain
       TimeFormat = tf24
       TimeDisplay = tdHMS
       DateMode = dmComboBox
-      Date = 45239
+      Date = 45242
       Time = 0.0305180671275593
       UseDefaultSeparators = True
       HideDateTimeParts = []
@@ -773,7 +779,9 @@ object frmMain: TfrmMain
       BorderSpacing.Left = 8
       BorderSpacing.Right = 8
       Caption = 'U'
+      Checked = True
       OnChange = date1Change
+      State = cbChecked
       TabOrder = 21
     end
     object chkItalicDate5: TCheckBox
@@ -788,7 +796,9 @@ object frmMain: TfrmMain
       BorderSpacing.Left = 8
       BorderSpacing.Right = 8
       Caption = 'I'
+      Checked = True
       OnChange = date1Change
+      State = cbChecked
       TabOrder = 22
     end
     object chkBoldDate5: TCheckBox
@@ -803,7 +813,9 @@ object frmMain: TfrmMain
       BorderSpacing.Left = 8
       BorderSpacing.Right = 8
       Caption = 'B'
+      Checked = True
       OnChange = date1Change
+      State = cbChecked
       TabOrder = 23
     end
     object btnFontDate5: TColorButton
@@ -821,7 +833,7 @@ object frmMain: TfrmMain
       BorderSpacing.Right = 8
       BorderWidth = 2
       ButtonColorSize = 16
-      ButtonColor = clWindowText
+      ButtonColor = clWhite
       Caption = 'Font'
       OnColorChanged = date1Change
     end
@@ -840,7 +852,7 @@ object frmMain: TfrmMain
       BorderSpacing.Right = 8
       BorderWidth = 2
       ButtonColorSize = 16
-      ButtonColor = clWindow
+      ButtonColor = clNavy
       Caption = 'Background'
       OnColorChanged = date1Change
     end
@@ -865,7 +877,7 @@ object frmMain: TfrmMain
       TimeFormat = tf24
       TimeDisplay = tdHMS
       DateMode = dmComboBox
-      Date = 45239
+      Date = 45243
       Time = 0.0305180671275593
       UseDefaultSeparators = True
       HideDateTimeParts = []
