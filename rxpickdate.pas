@@ -838,15 +838,15 @@ var
 begin
   if FCalendarOptions <> Value then
   begin
-    NeedResize := (Options * [goVertLine, goHorzLine, goFixedVertLine,
-      goFixedHorzLine] <> []) xor (cloDrawGrid in Value);
+    NeedResize := (Options * [goVertLine, goHorzLine] <> []) xor (cloDrawGrid in
+      Value);
 
     FCalendarOptions := Value;
 
     if cloDrawGrid in Value then
-      Options := Options + [goVertLine, goHorzLine, goFixedVertLine, goFixedHorzLine]
+      Options := Options + [goVertLine, goHorzLine]
     else
-      Options := Options - [goVertLine, goHorzLine, goFixedVertLine, goFixedHorzLine];
+      Options := Options - [goVertLine, goHorzLine];
 
     if cloDayHints in Value then
       Options := Options + [goCellHints]
@@ -1000,6 +1000,7 @@ begin
   UseCurrentDate := False;
   FixedColor := Color;
   Options := [goFixedHorzLine];
+  FCalendarOptions := [cloDrawFrameToday];
   TabStop := False;
 end;
 
@@ -1707,16 +1708,20 @@ end;
 
 procedure TRxCalendarGrid.SetBounds(aLeft, aTop, aWidth, aHeight: integer);
 var
-  GridLinesH, GridLinesW: Integer;
+  {GridLinesH, GridLinesW: Integer;}
+  NeedSize, NeedMove: Boolean;
 begin
+  NeedSize := (aWidth <> Width) or (aHeight <> Height);
+  NeedMove := (aLeft <> Left) or (aTop <> Top);
   inherited SetBounds(aLeft, aTop, aWidth, aHeight);
 
-  GridLinesH := 6 * GridLineWidth;
+  SendMoveSizeMessages(NeedSize, NeedMove);
+  {GridLinesH := 6 * GridLineWidth;
   if (goVertLine in Options) or (goFixedVertLine in Options) then
     GridLinesW := 6 * GridLineWidth
   else GridLinesW := 0;
   DefaultColWidth := (aWidth - GridLinesW) div 7;
-  DefaultRowHeight := (aHeight - GridLinesH) div 7;
+  DefaultRowHeight := (aHeight - GridLinesH) div 7;}
 end;
 
 end.
