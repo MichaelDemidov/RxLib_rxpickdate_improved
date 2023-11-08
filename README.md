@@ -17,7 +17,8 @@ The `rxpickdate.pas` originally is the file from [RxLib components library for D
     * `cloDrawGrid` — draw the grid lines or not,
     * `cloUseMinDate` — use the `MinDate` property (see below) or ignore it,
     * `cloUseMaxDate` — use the `MaxDate` property (see below) or ignore it,
-    * `cloDrawFrameToday` — draw the 3D frame around the current date or not.
+    * `cloDrawFrameToday` — draw the 3D frame around the current date or not,
+    * `cloDayHints` — show the day hint or not.
 
 * two new properties: `MinDate` and `MaxDate`. If `cloUseMinDate` is in the `CalendarOptions` set, and the user tries to select a date (or the programmer tries to assign a date-related property) that is earlier than the `MinDate`, then nothing happens. And the same is true for the `cloUseMaxDate` option and a date later than the `MaxDate`.
 

@@ -63,10 +63,8 @@ type
    cloUseMinDate - use the MinDate property or ignore it
    cloUseMaxDate - use the MaxDate property or ignore it
    cloDrawFrameToday - draw the 3D frame around the current date or not
-   cloBetterGridFit (not implemented yet) - change individual columns/rows widths
-     slightly after changing DefaultColWidth/DefaultRowHeight property
-     when resizing the grid to better fit the grid size}
-  TCalendarOption = (cloDrawGrid, cloUseMinDate, cloUseMaxDate, cloDrawFrameToday{, cloBetterGridFit});
+   cloDayHints - show the day hint or not}
+  TCalendarOption = (cloDrawGrid, cloUseMinDate, cloUseMaxDate, cloDrawFrameToday, cloDayHints);
   TCalendarOptions = set of TCalendarOption;
 
   TOnGetDateInfo = procedure (Sender: TObject; ADate: TDate; ADay: Word;
@@ -412,7 +410,7 @@ begin
   RowCount := 7;
   ScrollBars := ssNone;
   Options := Options - [goRangeSelect] + [goDrawFocusSelected, goVertLine,
-    goHorzLine, goFixedHorzLine, goCellHints];
+    goHorzLine, goFixedHorzLine];
   ControlStyle := ControlStyle + [csFramed];
   FDate := Date; // fix this after 31.12.2999 ;)
   ADefaultTextStyle:=DefaultTextStyle;
@@ -839,14 +837,16 @@ begin
   if FCalendarOptions <> Value then
   begin
     FCalendarOptions := Value;
-    if (Options * [goVertLine, goHorzLine, goFixedVertLine, goFixedHorzLine] <>
-      []) xor (cloDrawGrid in Value) then
-    begin
-      if cloDrawGrid in Value then
-        Options := Options + [goVertLine, goHorzLine, goFixedVertLine, goFixedHorzLine]
-      else
-        Options := Options - [goVertLine, goHorzLine, goFixedVertLine, goFixedHorzLine]
-    end;
+
+    if cloDrawGrid in Value then
+      Options := Options + [goVertLine, goHorzLine, goFixedVertLine, goFixedHorzLine]
+    else
+      Options := Options - [goVertLine, goHorzLine, goFixedVertLine, goFixedHorzLine];
+
+    if cloDayHints in Value then
+      Options := Options + [goCellHints]
+    else
+      Options := Options - [goCellHints];
 
     if (cloUseMinDate in CalendarOptions) and (FDate < FMinDate) then
         FDate := FMinDate;
