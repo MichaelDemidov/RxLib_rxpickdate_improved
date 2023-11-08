@@ -3,7 +3,7 @@ RxLib rxpickdate improved
 
 One day I needed to display a month calendar. The Lazarus standard `TCalendar` component didn't fit my needs, and the component from the RxLib library looked a little different from what I wanted (with its grid lines) and lacked the properties I needed (marking holidays). I modified it to suit my needs and decided to post it here in case anyone else might find it useful.
 
-The `rxpickdate.pas` originally is the file from [RxLib components library for Delphi/Lazarus](https://wiki.freepascal.org/RXfpc), see original copyright inside the source file. I only improved the `TCustomRxCalendar` component and its descendant `TRxCalendarGrid `:
+The `rxpickdate.pas` originally is the file from [RxLib components library for Delphi/Lazarus](https://wiki.freepascal.org/RXfpc), see original copyright inside the source file. I only improved the `TCustomRxCalendar` component and its descendant `TRxCalendarGrid`:
 
 * new property `CalendarOptions` of the `TCalendarOptions` type:
 
@@ -19,7 +19,7 @@ The `rxpickdate.pas` originally is the file from [RxLib components library for D
     * `cloUseMaxDate` — use the `MaxDate` property (see below) or ignore it,
     * `cloDrawFrameToday` — draw the 3D frame around the current date or not.
 
-* two new properties: `MinDate` and `MaxDate`. If `cloUseMinDate` is in the `CalendarOptions` set, and the user tries to select a date (or the programmer tries to assign a date-related property) that is earlier than the `MinDate`, then nothing happens. And the same is true for the `cloUseMaxDate` option and a date later than `MaxDate`.
+* two new properties: `MinDate` and `MaxDate`. If `cloUseMinDate` is in the `CalendarOptions` set, and the user tries to select a date (or the programmer tries to assign a date-related property) that is earlier than the `MinDate`, then nothing happens. And the same is true for the `cloUseMaxDate` option and a date later than the `MaxDate`.
 
 * new event handler: `OnGetDateInfo: TOnGetDateInfo`
 
