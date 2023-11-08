@@ -13,25 +13,71 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    btnBackgroundDate1: TColorButton;
+    btnBackgroundDate2: TColorButton;
+    btnBackgroundDate3: TColorButton;
+    btnBackgroundDate4: TColorButton;
+    btnBackgroundDate5: TColorButton;
+    btnFontDate1: TColorButton;
+    btnFontDate2: TColorButton;
+    btnFontDate3: TColorButton;
+    btnFontDate4: TColorButton;
+    btnFontDate5: TColorButton;
     calMonthly: TRxCalendarGrid;
     calEdit: TRxDateEdit;
     cbxMonths: TComboBox;
     cgrCalendarOptions: TCheckGroup;
+    chkBoldDate1: TCheckBox;
+    chkBoldDate2: TCheckBox;
+    chkBoldDate3: TCheckBox;
+    chkBoldDate4: TCheckBox;
+    chkBoldDate5: TCheckBox;
+    chkItalicDate1: TCheckBox;
+    chkItalicDate2: TCheckBox;
+    chkItalicDate3: TCheckBox;
+    chkItalicDate4: TCheckBox;
+    chkItalicDate5: TCheckBox;
+    chkUnderlineDate1: TCheckBox;
+    chkUnderlineDate2: TCheckBox;
+    chkUnderlineDate3: TCheckBox;
+    chkUnderlineDate4: TCheckBox;
+    chkUnderlineDate5: TCheckBox;
+    date2: TDateTimePicker;
+    date3: TDateTimePicker;
+    date4: TDateTimePicker;
+    date5: TDateTimePicker;
     dateMax: TDateTimePicker;
     dateMin: TDateTimePicker;
+    date1: TDateTimePicker;
+    edtHintDate1: TEdit;
+    edtHintDate2: TEdit;
+    edtHintDate3: TEdit;
+    edtHintDate4: TEdit;
+    edtHintDate5: TEdit;
     edtYear: TSpinEdit;
+    grpDateProps: TGroupBox;
+    lblDate2: TLabel;
+    lblDate3: TLabel;
+    lblDate4: TLabel;
+    lblDate5: TLabel;
+    lblMaxDate: TLabel;
+    lblMinDate: TLabel;
+    lblDate1: TLabel;
     procedure calEditChange(Sender: TObject);
     procedure calMonthlyChange(Sender: TObject);
     procedure cbxMonthsSelect(Sender: TObject);
     procedure cgrCalendarOptionsItemClick(Sender: TObject; Index: integer);
+    procedure date1Change(Sender: TObject);
     procedure dateMaxChange(Sender: TObject);
     procedure dateMinChange(Sender: TObject);
     procedure edtYearChange(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
-
-  public
-
+    procedure calMonthlyGetDateInfo(Sender: TObject; ADate: TDate; ADay: Word;
+      ANotInThisMonth: Boolean; var ADayColor: TColor; var ADayBackground:
+      TColor; var AFontStyle: TFontStyles; var ADisabled: Boolean; var AHint:
+      string);
   end;
 
 var
@@ -58,6 +104,12 @@ begin
   dateMin.Date := calMonthly.MinDate;
   dateMax.Date := calMonthly.MaxDate;
 
+  for I := 1 to 5 do
+    (FindComponent(Format('date%d', [I])) as TDateTimePicker).Date := Date + I -
+    1;
+  calMonthly.ShowHint := True;
+  calMonthly.OnGetDateInfo := @calMonthlyGetDateInfo;
+
   // appearance
   P := cgrCalendarOptions.ClientToParent(Point(0, 0));
   dateMin.Top := cgrCalendarOptions.Controls[Ord(cloUseMinDate)].Top +
@@ -79,6 +131,11 @@ begin
   else
     calMonthly.CalendarOptions := calMonthly.CalendarOptions -
       [TCalendarOption(Index)]
+end;
+
+procedure TfrmMain.date1Change(Sender: TObject);
+begin
+  calMonthly.UpdateCalendar;
 end;
 
 procedure TfrmMain.calMonthlyChange(Sender: TObject);
@@ -121,6 +178,44 @@ begin
   except
     // user entered something wrong
     (Sender as TSpinEdit).Value := calMonthly.Year;
+  end;
+end;
+
+procedure TfrmMain.FormCreate(Sender: TObject);
+begin
+  Caption := Application.Title;
+end;
+
+procedure TfrmMain.calMonthlyGetDateInfo(Sender: TObject; ADate: TDate; ADay:
+  Word; ANotInThisMonth: Boolean; var ADayColor: TColor; var ADayBackground:
+  TColor; var AFontStyle: TFontStyles; var ADisabled: Boolean; var AHint:
+  string);
+var
+  I: Integer;
+  D: TDateTimePicker;
+  FS: TFontStyles;
+begin
+  for I := 1 to 5 do
+  begin
+    D := FindComponent(Format('date%d', [I])) as TDateTimePicker;
+    if D.Date = ADate then
+    begin
+      ADayColor := (FindComponent(Format('btnFontDate%d', [I])) as
+        TColorButton).ButtonColor;
+      ADayBackground := (FindComponent(Format('btnBackgroundDate%d', [I])) as
+        TColorButton).ButtonColor;
+      AHint := (FindComponent(Format('edtHintDate%d', [I])) as TEdit).Text;
+      FS := [];
+      if (FindComponent(Format('chkBoldDate%d', [I])) as TCheckBox).Checked then
+        Include(FS, fsBold);
+      if (FindComponent(Format('chkItalicDate%d', [I])) as TCheckBox).Checked
+        then
+        Include(FS, fsItalic);
+      if (FindComponent(Format('chkUnderlineDate%d', [I])) as TCheckBox).Checked
+        then
+        Include(FS, fsUnderline);
+      AFontStyle := FS;
+    end;
   end;
 end;
 
