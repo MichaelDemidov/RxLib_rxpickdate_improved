@@ -28,9 +28,9 @@ The `rxpickdate.pas` originally is the file from [RxLib components library for D
       TOnGetDateInfo = procedure (Sender: TObject; ADate: TDate; ADay: Word; ANotInThisMonth: Boolean; var ADayColor: TColor; var ADayBackground: TColor; var AFontStyle: TFontStyles; var ADisabled: Boolean; var AHint: string) of object;
     ```
 
-    This event handler allows you to mark some dates on the calendar with a backround and font color / style, to add an individual date hints, and also to make the date disabled (grayed out and unselectable). This is useful if you need to highlight holidays or any other days you need. The `ADate` input parameter and the combination `ADay` + `ANotInThisMonth` can be used interchangeably. Sometimes it is more convenient to check the first one, sometimes the second.
+    This event handler allows you to mark some dates on the calendar with a background and font color / style, to add an individual date hints, and also to make the date disabled (grayed out and unselectable). This is useful if you want to highlight holidays or any other days you need. The `ADate` input parameter and the combination `ADay` + `ANotInThisMonth` can be used interchangeably. Sometimes it is more convenient to check the date, sometimes the day number.
 
-* some other imporovements. Specifically, I extended the `TDaysItem` record type and replaced the `DayColor` check with a new `DayIsNotInThisMonth` field when drawing days that are not in the current month, to avoid collisions, such as having that color match the color of a weekend or a disabled date.
+* other imporovements. Specifically, I extended the `TDaysItem` record type and replaced the `DayColor` check with a new `DayIsNotInThisMonth` field when drawing days that are not in the current month, to avoid collisions, such as having that color match the color of a weekend or a disabled date.
 
 Before and after (dates highlighted in red are Orthodox Christmas holidays):
 
