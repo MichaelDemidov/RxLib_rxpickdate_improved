@@ -9,7 +9,7 @@ The `rxpickdate.pas` originally is the file from [RxLib components library for D
 
     ```delphi
     type
-      TCalendarOption = (cloDrawGrid, cloUseMinDate, cloUseMaxDate, cloDrawFrameToday);
+      TCalendarOption = (cloDrawGrid, cloUseMinDate, cloUseMaxDate, cloDrawFrameToday, cloDayHints);
       TCalendarOptions = set of TCalendarOption;
     ```
 
