@@ -833,9 +833,14 @@ begin
 end;
 
 procedure TCustomRxCalendar.SetCalendarOptions(Value: TCalendarOptions);
+var
+  NeedResize: Boolean;
 begin
   if FCalendarOptions <> Value then
   begin
+    NeedResize := (Options * [goVertLine, goHorzLine, goFixedVertLine,
+      goFixedHorzLine] <> []) xor (cloDrawGrid in Value);
+
     FCalendarOptions := Value;
 
     if cloDrawGrid in Value then
@@ -854,6 +859,8 @@ begin
         FDate := FMaxDate;
 
     UpdateCalendar;
+    if Visible and NeedResize then
+      SendMoveSizeMessages(True, False);
   end;
 end;
 
