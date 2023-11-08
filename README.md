@@ -36,3 +36,8 @@ The `rxpickdate.pas` originally is the file from [RxLib components library for D
 Before and after (dates highlighted in red are Orthodox Christmas holidays):
 
 ![Before](before.png) ![After](after.png)
+
+Demo project
+------------
+
+The demo project allows to change the new properties at runtime and to check the new event handler behavior.
