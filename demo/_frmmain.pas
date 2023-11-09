@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
-  Spin, DateTimePicker, rxpickdate, rxtooledit, EditBtn;
+  Spin, DateTimePicker, rxpickdate, rxtooledit;
 
 type
 
@@ -74,10 +74,10 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
-    procedure calMonthlyGetDateInfo(Sender: TObject; ADate: TDate; ADay: Word;
-      ANotInThisMonth: Boolean; var ADayColor: TColor; var ADayBackground:
-      TColor; var AFontStyle: TFontStyles; var ADisabled: Boolean; var AHint:
-      string);
+    procedure calMonthlyGetDateInfo(Sender: TObject; ADate: TDate; {%H-}ADay:
+      Word; {%H-}ANotInThisMonth: Boolean; var ADayColor: TColor; var
+      ADayBackground: TColor; var AFontStyle: TFontStyles; var {%H-}ADisabled:
+      Boolean; var AHint: string);
   end;
 
 var

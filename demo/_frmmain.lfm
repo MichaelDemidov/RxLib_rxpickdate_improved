@@ -1,15 +1,15 @@
 object frmMain: TfrmMain
   Left = 764
-  Height = 416
+  Height = 433
   Top = 156
-  Width = 765
+  Width = 594
   AutoSize = True
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   BorderWidth = 16
   Caption = 'frmMain'
-  ClientHeight = 416
-  ClientWidth = 765
+  ClientHeight = 433
+  ClientWidth = 594
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poDefault
@@ -316,6 +316,7 @@ object frmMain: TfrmMain
       BorderSpacing.Right = 8
       OnChange = date1Change
       TabOrder = 4
+      Text = 'Today'
     end
     object edtHintDate2: TEdit
       AnchorSideLeft.Control = chkUnderlineDate2
@@ -334,6 +335,7 @@ object frmMain: TfrmMain
       BorderSpacing.Right = 8
       OnChange = date1Change
       TabOrder = 5
+      Text = 'Green'
     end
     object chkUnderlineDate2: TCheckBox
       AnchorSideLeft.Control = chkItalicDate2
@@ -478,6 +480,7 @@ object frmMain: TfrmMain
       BorderSpacing.Right = 8
       OnChange = date1Change
       TabOrder = 10
+      Text = 'Sand'
     end
     object chkUnderlineDate3: TCheckBox
       AnchorSideLeft.Control = chkItalicDate3
@@ -622,6 +625,7 @@ object frmMain: TfrmMain
       BorderSpacing.Right = 8
       OnChange = date1Change
       TabOrder = 15
+      Text = 'Blue'
     end
     object chkUnderlineDate4: TCheckBox
       AnchorSideLeft.Control = chkItalicDate4
@@ -766,6 +770,7 @@ object frmMain: TfrmMain
       BorderSpacing.Right = 8
       OnChange = date1Change
       TabOrder = 20
+      Text = 'White on blue'
     end
     object chkUnderlineDate5: TCheckBox
       AnchorSideLeft.Control = chkItalicDate5
