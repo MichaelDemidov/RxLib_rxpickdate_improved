@@ -3,7 +3,7 @@
   Copyright (C) 2005-2021 Lagunov Aleksey alexs75@yandex.ru and Lazarus team
   original conception from rx library for Delphi (c)
 
-  Some updates by Michael Demidov michael.v.demidov@gmail.com, 2023.
+  Some updates by Michael Demidov <michael.v.demidov@gmail.com>, 2023.
 
   This library is free software; you can redistribute it and/or modify it
   under the terms of the GNU Library General Public License as published by
@@ -63,7 +63,7 @@ type
    cloUseMinDate - use the MinDate property or ignore it
    cloUseMaxDate - use the MaxDate property or ignore it
    cloDrawFrameToday - draw the 3D frame around the current date or not
-   cloDayHints - show the day hint or not}
+   cloDayHints - show the day hints or not}
   TCalendarOption = (cloDrawGrid, cloUseMinDate, cloUseMaxDate, cloDrawFrameToday, cloDayHints);
   TCalendarOptions = set of TCalendarOption;
 
@@ -112,6 +112,7 @@ type
     procedure AddWeek;
     procedure DecWeek;
     function CheckDateBounds(ADate: TDate): Boolean;
+    procedure UpdateGridDimensions(AWidth, AHeight: Integer);
   protected
     procedure CreateParams(var Params: TCreateParams); override;
     procedure Change; dynamic;
@@ -409,8 +410,8 @@ begin
   ColCount := 7;
   RowCount := 7;
   ScrollBars := ssNone;
-  Options := Options - [goRangeSelect] + [goDrawFocusSelected, goVertLine,
-    goHorzLine, goFixedHorzLine];
+  Options := Options - [goRangeSelect, goFixedVertLine] + [goDrawFocusSelected,
+    goVertLine, goHorzLine, goFixedHorzLine];
   ControlStyle := ControlStyle + [csFramed];
   FDate := Date; // fix this after 31.12.2999 ;)
   ADefaultTextStyle:=DefaultTextStyle;
@@ -575,15 +576,8 @@ begin
 end;
 
 procedure TCustomRxCalendar.LMSize(var Message: TLMSize);
-var
-  GridLinesH, GridLinesW: Integer;
 begin
-  GridLinesH := 6 * GridLineWidth;
-  if (goVertLine in Options) or (goFixedVertLine in Options) then
-    GridLinesW := 6 * GridLineWidth
-  else GridLinesW := 0;
-  DefaultColWidth := (Message.Width - GridLinesW) div 7;
-  DefaultRowHeight := (Message.Height - GridLinesH) div 7;
+  UpdateGridDimensions(Message.Width, Message.Height);
 end;
 
 procedure TCustomRxCalendar.RxCalendarMouseWheelUp(Sender: TObject;
@@ -598,6 +592,18 @@ procedure TCustomRxCalendar.RxCalendarMouseWheelDown(Sender: TObject;
 begin
   AddWeek;
   Handled := True;
+end;
+
+procedure TCustomRxCalendar.UpdateGridDimensions(AWidth, AHeight: Integer);
+var
+  GridLinesH, GridLinesW: Integer;
+begin
+  GridLinesH := 6 * GridLineWidth;
+  if (goVertLine in Options) or (goFixedVertLine in Options) then
+    GridLinesW := 6 * GridLineWidth
+  else GridLinesW := 0;
+  DefaultColWidth := (AWidth - GridLinesW) div 7;
+  DefaultRowHeight := (AHeight - GridLinesH) div 7;
 end;
 
 function TCustomRxCalendar.SelectCell(ACol, ARow: Integer): Boolean;
@@ -860,7 +866,7 @@ begin
 
     UpdateCalendar;
     if Visible and NeedResize then
-      SendMoveSizeMessages(True, False);
+      UpdateGridDimensions(Width, Height);
   end;
 end;
 
@@ -1707,21 +1713,9 @@ end;
 { TRxCalendarGrid }
 
 procedure TRxCalendarGrid.SetBounds(aLeft, aTop, aWidth, aHeight: integer);
-var
-  {GridLinesH, GridLinesW: Integer;}
-  NeedSize, NeedMove: Boolean;
 begin
-  NeedSize := (aWidth <> Width) or (aHeight <> Height);
-  NeedMove := (aLeft <> Left) or (aTop <> Top);
   inherited SetBounds(aLeft, aTop, aWidth, aHeight);
-
-  SendMoveSizeMessages(NeedSize, NeedMove);
-  {GridLinesH := 6 * GridLineWidth;
-  if (goVertLine in Options) or (goFixedVertLine in Options) then
-    GridLinesW := 6 * GridLineWidth
-  else GridLinesW := 0;
-  DefaultColWidth := (aWidth - GridLinesW) div 7;
-  DefaultRowHeight := (aHeight - GridLinesH) div 7;}
+  UpdateGridDimensions(aWidth, aHeight);
 end;
 
 end.
